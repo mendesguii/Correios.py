@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+import requests,sys
+
 def rastreio(cod_ras,last,horas =[],eventos =[]):
     #Sending Post
     rastreio = requests.post('https://www2.correios.com.br/sistemas/rastreamento/resultado.cfm',data = {'Objetos':cod_ras}).text
@@ -9,7 +10,7 @@ def rastreio(cod_ras,last,horas =[],eventos =[]):
         for hora in table.find_all('td',class_='sroDtEvent'):
             horas.append(hora.text.replace('\n','').replace('      ',''))
         for evento in table.find_all('td',class_='sroLbEvent'):
-            eventos.append(evento.text.replace('\n',''))
+            eventos.append(evento.text.replace("\t", "").replace("\r", "").replace("\n", " ").replace('  ',''))
     #Printing 
     if (len(horas) < 1):
         print('Número de rastreio '+ cod_ras +' incorreto ou inexistente !'+'\n')
@@ -24,9 +25,17 @@ def rastreio(cod_ras,last,horas =[],eventos =[]):
 def Main():
     horas = []
     eventos = []
-    cod_rastreio = ['JT936833164BR','JT936836452BR']
-    for x in range(0,len(cod_rastreio)):
-        rastreio(cod_rastreio[x],horas,eventos)
-        print('\n')
     
+    if sys.argv[1] is None: 
+        cod_rastreio = [''] #Items Tracking Code
+        
+        for x in range(0,len(cod_rastreio)):
+            rastreio(cod_rastreio[x],horas,eventos)
+            print('\n')
+        
+    else:
+        for z in range(1,len(sys.argv)):   
+           rastreio(sys.argv[z],horas,eventos)
+           print('\n')
+        
 Main()
