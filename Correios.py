@@ -15,9 +15,11 @@ def rastreio(cod_ras,last,horas =[],eventos =[]):
     if (len(horas) < 1):
         print('Número de rastreio '+ cod_ras +' incorreto ou inexistente !'+'\n')
     else:
-        print('Rastreio : '+cod_ras)
+        print('||================================================================== '+cod_ras+' ==================================================================||')
+        print('\n')
         for x in range(0,len(horas)):
-            print(horas[x] + ' - '+ eventos[x])
+            print('⦿ ['+horas[x] + '] » '+ eventos[x])
+        print('\n')
     #Clearing Lists
     horas.clear()
     eventos.clear()
@@ -29,12 +31,8 @@ def Main():
     if len(sys.argv) <= 1:
         cod_rastreio = [] #Items Tracking Code
         for x in range(0,len(cod_rastreio)):
-            rastreio(cod_rastreio[x],horas,eventos)
-            print('\n')
-        
+            rastreio(cod_rastreio[x],horas,eventos)        
     else:
         for z in range(1,len(sys.argv)):   
-           rastreio(sys.argv[z],horas,eventos)
-           print('\n')
-        
+           rastreio(sys.argv[z],horas,eventos)        
 Main()
