@@ -26,9 +26,8 @@ def Main():
     horas = []
     eventos = []
     
-    if sys.argv[1] is None: 
-        cod_rastreio = [''] #Items Tracking Code
-        
+    if len(sys.argv) <= 1:
+        cod_rastreio = [] #Items Tracking Code
         for x in range(0,len(cod_rastreio)):
             rastreio(cod_rastreio[x],horas,eventos)
             print('\n')
