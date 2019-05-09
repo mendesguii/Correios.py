@@ -14,7 +14,7 @@ Através do próprio terminal ou inserindo na lista dentro do código.
 <code>python correios <rastreio\></code>
 
 ##### Multi Rastreios
-<code>python correios.py <rastreio1\> rastreio2\> </code>
+<code>python correios.py <rastreio1\> <rastreio2\> </code>
   
 Tendo n rastreios:
 <code>python correios.py <rastreio1\> .... <rastreioN\> </code>
